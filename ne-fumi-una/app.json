@@ -42,6 +42,13 @@
 			"name": "number_of_cigarettes"
 		},
 		{
+			"type": "expression",
+			"scope": "entry",
+			"settings": {
+				"expression": "number_of_cigarettes"
+			}
+		},
+		{
 			"type": "property",
 			"scope": "entry",
 			"flags": [
@@ -91,6 +98,11 @@
 				"multiline": true
 			},
 			"name": "notes"
+		},
+		{
+			"type": "expression",
+			"scope": "entry",
+			"settings": {}
 		}
 	],
 	"root": [
@@ -106,7 +118,57 @@
 				"set_pairs": [],
 				"filter_pairs": []
 			}
+		},
+		{
+			"type": "action",
+			"scope": "root",
+			"settings": {
+				"target_preset": "new",
+				"target": "add(entry)",
+				"set_pairs": [
+					{
+						"name": "number_of_cigarettes",
+						"value": "2"
+					}
+				],
+				"filter_pairs": [],
+				"label": "Add 2 smokes"
+			}
+		},
+		{
+			"type": "action",
+			"scope": "root",
+			"settings": {
+				"target_preset": "last",
+				"target": "last(entry)",
+				"set_pairs": [
+					{
+						"name": "number_of_cigarettes",
+						"value": "number_of_cigarettes + 2"
+					}
+				],
+				"filter_pairs": [],
+				"label": "Add 2 smokes to the last smoke"
+			}
+		},
+		{
+			"type": "expression",
+			"scope": "root",
+			"settings": {
+				"expression": "duration($now - first(date_time))"
+			}
 		}
 	],
-	"charts": []
+	"charts": [
+		{
+			"type": "chart",
+			"scope": "charts",
+			"settings": {
+				"type": "bar",
+				"group_by": "day",
+				"aggregate_of": "number_of_cigarettes",
+				"aggregate": "sum"
+			}
+		}
+	]
 }
