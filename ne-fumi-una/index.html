@@ -25,26 +25,53 @@
 			<span class="app-name">Ne fumi una?</span>
 		</h1>
 		<h2>smoke tracker</h2>
-		<div class="mv-bar mv-ui"></div>
+		<div class="mv-bar mv-ui"><a href="#entries" class="mv-button custom entries">Entries</a></div>
 	</header>
 
 	<main class="charts-first">
 		<a id=stats></a>
-			
+			<div class="chart-row">
+				<figure data-type="chart" class="chart appearance-stretch type-bar" style="min-width: min(300px, 100vw)">
+	
+	<h-chart type="bar" x="b">
+		<table>
+			<thead>
+				<tr>
+					<th hc-name="a">Day</th>
+					<th hc-name="b">Sum of number_of_cigarettes</th>
+				</tr>
+			</thead>
+			<tbody mv-list="chart10" mv-value="groupBy(entry.number_of_cigarettes, readable_datetime(entry.date, 'day'))">
+				<tr mv-list-item mv-group>
+					<td>[$value]</td>
+					<td>[sum($items)]</td>
+				</tr>
+			</tbody>
+		</table>
+	</h-chart>
+	<figcaption>Sum of number_of_cigarettes per day</figcaption></figure>
+			</div>
 		<a id=entries></a>
 			<div class="field-row">
 				<button data-type="action" data-show="edit" mv-action="add(entry)">➕ Add smoke</button>
+				<button data-type="action" mv-action="add(number_of_cigarettes: 2, entry)">Add 2 smokes</button>
+				<button data-type="action" mv-action="set(last(entry), number_of_cigarettes: number_of_cigarettes + 2)">Add 2 smokes to the last smoke</button>
+				<span data-type="expression" mv-value="duration($now - first(date_time))"></span>
 			</div>
 		<section mv-list="entry">
 			<article mv-list-item class="entry">
 				<header class="field-row">
 					<span property="weekday" data-type="expression" mv-value="weekday(date, 'shortname')"></span>
 					<meter-discrete property="number_of_cigarettes" data-type="property" mv-default="1" min="1" max="10" step="1" mv-edit-as="meter" icon="🚬" class="type-number bar"></meter-discrete>
+					<span data-type="expression" mv-value="number_of_cigarettes"></span>
 					<time property="date" data-type="property" mv-default="[$today]" mv-edit-type="inline" mv-editor-type="date" class="bold type-date"></time>
 					<time property="time" data-type="property" data-prefix=" at " mv-default="[time($startup, 'hours')]" mv-edit-type="inline" mv-editor-type="time" class="type-time"></time>
 					<span property="date_time" data-type="expression" data-show="false" mv-value="datetime(date, time)"></span>
 				</header>
 				<div property="notes" data-type="property" class="appearance-line type-text"></div>
+				<div class="field-row">
+					<span data-type="expression" mv-value=""></span>
+				</div>
 			</article>
 		</section>
 	</main>
