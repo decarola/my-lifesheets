@@ -153,11 +153,12 @@
 			"type": "property",
 			"scope": "entry",
 			"settings": {
-				"type": "text",
+				"type": "options",
 				"default": "Personal",
-				"allow_multiple": "yes",
+				"allow_multiple": "",
 				"multiline": false,
-				"visible": ""
+				"visible": "",
+				"options": "Personal, Quest, Breeze, Synergy"
 			},
 			"name": "project"
 		}
