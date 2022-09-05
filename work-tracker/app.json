@@ -161,6 +161,15 @@
 				"options": "Personal, Quest, Breeze, Synergy"
 			},
 			"name": "project"
+		},
+		{
+			"type": "expression",
+			"scope": "entry",
+			"settings": {
+				"prefix": "€",
+				"expression": "if(project = \"Personal\", 0, hours(end_date_time - date_time) * 50)"
+			},
+			"name": "Earnings"
 		}
 	],
 	"root": [
@@ -176,7 +185,36 @@
 				"set_pairs": [],
 				"filter_pairs": []
 			}
+		},
+		{
+			"type": "expression",
+			"scope": "root",
+			"settings": {
+				"expression": "sum(Earnings)",
+				"prefix": "Totalone: ",
+				"suffix": "€"
+			}
 		}
 	],
-	"charts": []
+	"charts": [
+		{
+			"type": "chart",
+			"scope": "charts",
+			"settings": {
+				"aggregate": "sum",
+				"aggregate_of": "Earnings",
+				"group_by": "project"
+			}
+		},
+		{
+			"type": "chart",
+			"scope": "charts",
+			"settings": {
+				"type": "table",
+				"aggregate_of": "Earnings",
+				"group_by": "notes",
+				"aggregate": "average"
+			}
+		}
+	]
 }
