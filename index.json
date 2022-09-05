@@ -1,0 +1,16 @@
+{
+	"ne-fumi-una": {
+		"name": "Ne fumi una?",
+		"slug": "ne-fumi-una",
+		"entry_name": "smoke",
+		"description": "smoke tracker",
+		"private": false,
+		"icon": "🚬",
+		"color": "#a3a3a3",
+		"storageType": "",
+		"storage": "",
+		"charts_placement": "",
+		"entries_name": "smokes",
+		"storage_type": ""
+	}
+}
