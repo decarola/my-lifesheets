@@ -12,5 +12,18 @@
 		"charts_placement": "",
 		"entries_name": "smokes",
 		"storage_type": ""
+	},
+	"work-tracker": {
+		"name": "Work tracker",
+		"slug": "work-tracker",
+		"entry_name": "session",
+		"description": "Work session tracker",
+		"private": false,
+		"icon": "👨🏻‍💻",
+		"color": "#4de1ff",
+		"storageType": "",
+		"storage": "",
+		"charts_placement": "",
+		"entries_name": "sessions"
 	}
 }
