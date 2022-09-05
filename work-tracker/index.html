@@ -25,15 +25,51 @@
 			<span class="app-name">Work tracker</span>
 		</h1>
 		<h2>Work session tracker</h2>
-		<div class="mv-bar mv-ui"></div>
+		<div class="mv-bar mv-ui"><a href="#entries" class="mv-button custom entries">Entries</a></div>
 	</header>
 
 	<main class="charts-first">
 		<a id=stats></a>
-			
+			<div class="chart-row">
+				<figure data-type="chart" class="chart appearance-stretch type-table" style="min-width: min(300px, 100vw)">
+	
+		<table>
+			<thead>
+				<tr>
+					<th hc-name="a">Project</th>
+					<th hc-name="b">Sum of Earnings</th>
+				</tr>
+			</thead>
+			<tbody mv-list="chart16" mv-value="sort(groupBy(entry.Earnings, entry.project), '$value')">
+				<tr mv-list-item mv-group>
+					<td>[$value]</td>
+					<td>[sum($items)]</td>
+				</tr>
+			</tbody>
+		</table>
+	<figcaption>Sum of Earnings per project value</figcaption></figure>
+				<figure data-type="chart" class="chart appearance-stretch type-table" style="min-width: min(300px, 100vw)">
+	
+		<table>
+			<thead>
+				<tr>
+					<th hc-name="a">Notes</th>
+					<th hc-name="b">Average Earnings</th>
+				</tr>
+			</thead>
+			<tbody mv-list="chart17" mv-value="sort(groupBy(entry.Earnings, entry.notes), '$value')">
+				<tr mv-list-item mv-group>
+					<td>[$value]</td>
+					<td>[average($items)]</td>
+				</tr>
+			</tbody>
+		</table>
+	<figcaption>Average Earnings per notes value</figcaption></figure>
+			</div>
 		<a id=entries></a>
 			<div class="field-row">
 				<button data-type="action" data-show="edit" mv-action="add(entry)">➕ Add session</button>
+				<span data-type="expression" data-prefix="Totalone: " data-suffix="€" mv-value="sum(Earnings)"></span>
 			</div>
 		<section mv-list="entry">
 			<article mv-list-item class="entry">
@@ -51,6 +87,7 @@
 				<div property="notes" data-type="property" class="appearance-line type-text"></div>
 				<div class="field-row">
 					<span property="project" data-type="property" mv-default="Personal" mv-options="Personal, Quest, Breeze, Synergy" class="type-options"></span>
+					<span property="Earnings" data-type="expression" data-prefix="€" mv-value="if(project = &quot;Personal&quot;, 0, hours(end_date_time - date_time) * 50)"></span>
 				</div>
 			</article>
 		</section>
